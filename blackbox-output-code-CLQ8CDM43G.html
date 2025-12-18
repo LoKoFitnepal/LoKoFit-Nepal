@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LoKoFit - Activewear from Nepal</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <h1>LoKoFit</h1>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#shop">Shop</a>
+            <a href="#shipping">Shipping</a>
+            <a href="#about">About</a>
+            <input type="text" id="search" placeholder="Search products...">
+            <button id="cart-btn">Cart (<span id="cart-count">0</span>)</button>
+            <a href="https://www.instagram.com/lokofit.np?igsh=ZnBuZ2Y0NmJncHdm" target="_blank">Instagram</a>
+        </nav>
+    </header>
+    
+    <section id="home" class="hero">
+        <div>
+            <h1>Fit for the Bold – Made in Nepal</h1>
+            <p>Premium activewear for your lifestyle. Worldwide delivery from Kathmandu.</p>
+            <a href="#shop" class="btn">Shop Now</a>
+        </div>
+    </section>
+    
+    <section id="shop" class="products">
+        <h2>Our Collection</h2>
+        <div class="filters">
+            <select id="filter-size">
+                <option value="">All Sizes</option>
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+            </select>
+            <select id="filter-price">
+                <option value="">All Prices</option>
+                <option value="low">Under NPR 2000</option>
+                <option value="high">NPR 2000+</option>
+            </select>
+            <button id="currency-toggle">Currency: NPR</button>
+        </div>
+        <div class="product-grid">
+            <div class="product" data-size="M" data-price="low">
+                <img src="tshirt.jpg" alt="LoKoFit T-Shirt">
+                <h3>Performance T-Shirt</h3>
+                <p class="price">NPR 1500 / $15</p>
+                <div class="product-actions">
+                    <input type="number" class="quantity" value="1" min="1">
+                    <button class="add-to-cart" data-name="Performance T-Shirt" data-price="1500" data-usd="15">Add to Cart</button>
+                    <button class="buy-now" data-name="Performance T-Shirt" data-price="1500" data-usd="15">Buy Now</button>
+                    <button class="quick-view" data-desc="Breathable fabric for intense workouts.">Quick View</button>
+                </div>
+            </div>
+            <div class="product" data-size="L" data-price="high">
+                <img src="leggings.jpg" alt="LoKoFit Leggings">
+                <h3>Active Leggings</h3>
+                <p class="price">NPR 2500 / $25</p>
+                <div class="product-actions">
+                    <input type="number" class="quantity" value="1" min="1">
+                    <button class="add-to-cart" data-name="Active Leggings" data-price="2500" data-usd="25">Add to Cart</button>
+                    <button class="buy-now" data-name="Active Leggings" data-price="2500" data-usd="25">Buy Now</button>
+                    <button class="quick-view" data-desc="High-waist support for yoga and runs.">Quick View</button>
+                </div>
+            </div>
+            <!-- Add more products as needed -->
+        </div>
+    </section>
+    
+    <section id="shipping">
+        <h2>Shipping & Delivery</h2>
+        <p><strong>Nepal:</strong> Free delivery within 3-5 days via local couriers.</p>
+        <p><strong>Worldwide:</strong> Standard shipping $10 (7-14 days), Express $20 (3-7 days). Customs fees may apply.</p>
+        <div class="shipping-calc">
+            <label>Enter your location:</label>
+            <input type="text" id="location" placeholder="e.g., Kathmandu, Nepal or New York, USA">
+            <button onclick="calculateShipping()">Calculate</button>
+            <p id="shipping-result"></p>
+        </div>
+    </section>
+    
+    <section id="about">
+        <h2>About LoKoFit</h2>
+        <p>Founded in Nepal, LoKoFit blends local craftsmanship with global style. Empowering active lives worldwide.</p>
+        <div class="reviews">
+            <h3>Customer Reviews</h3>
+            <p>"Amazing quality from Nepal!" - User A</p>
+            <p>"Fast worldwide shipping!" - User B</p>
+        </div>
+    </section>
+    
+    <section class="instagram">
+        <h2>Follow Us</h2>
+        <p>Latest updates: <a href="https://www.instagram.com/lokofit.np?igsh=ZnBuZ2Y0NmJncHdm">@lokofit.np</a></p>
+    </section>
+    
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Your Cart</h2>
+            <div id="cart-items"></div>
+            <p id="cart-total">Total: NPR 0</p>
+            <button id="checkout-btn">Proceed to Checkout</button>
+        </div>
+    </div>
+    
+    <!-- Checkout Modal -->
+    <div id="checkout-modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Checkout</h2>
+            <form id="checkout-form">
+                <label>Name:</label><input type="text" id="name" required>
+                <label>Email:</label><input type="email" id="email" required>
+                <label>Address:</label><textarea id="address" required></textarea>
+                <label>Shipping:</label>
+                <select id="shipping-option">
+                    <option value="nepal">Nepal (Free)</option>
+                    <option value="worldwide">Worldwide ($10)</option>
+                </select>
+                <label>Payment Method:</label>
+                <select id="payment-method">
+                    <option value="khalti">Khalti (Nepal)</option>
+                    <option value="esewa">eSewa (Nepal)</option>
+                    <option value="stripe">Stripe (International)</option>
+                    <option value="paypal">PayPal (International)</option>
+                </select>
+                <div id="order-summary"></div>
+                <button type="submit">Complete Order</button>
+            </form>
+            <p id="payment-status"></p>
+        </div>
+    </div>
+    
+    <footer>
+        <p>&copy; 2023 LoKoFit. Based in Nepal. Worldwide Shipping.</p>
+        <a href="#">Privacy Policy</a> | <a href="#">Terms</a>
+        <form class="newsletter">
+            <input type="email" placeholder="Subscribe to newsletter">
+            <button>Subscribe</button>
+        </form>
+    </footer>
+    
+    <script src="script.js"></script>
+</body>
+</html>

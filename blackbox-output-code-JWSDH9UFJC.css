@@ -1,0 +1,27 @@
+body { font-family: 'Montserrat', sans-serif; margin: 0; padding: 0; background: #f4f4f4; color: #333; }
+header { background: #000; color: #fff; padding: 1rem; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+nav { display: flex; gap: 1rem; align-items: center; }
+nav a, #cart-btn { color: #fff; text-decoration: none; cursor: pointer; }
+#search { padding: 0.5rem; }
+.hero { background: url('hero-nepal.jpg') center/cover; height: 60vh; display: flex; align-items: center; justify-content: center; text-align: center; color: #fff; animation: fadeIn 2s; }
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.btn { background: #00BFFF; color: #fff; padding: 0.5rem 1rem; text-decoration: none; border-radius: 5px; transition: background 0.3s; }
+.btn:hover { background: #0099CC; }
+.products { padding: 2rem; }
+.product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1rem; }
+.product { border: 1px solid #ddd; padding: 1rem; text-align: center; background: #fff; transition: transform 0.3s; }
+.product:hover { transform: scale(1.05); }
+.product-actions { display: flex; flex-direction: column; gap: 0.5rem; }
+.add-to-cart, .buy-now, .quick-view { background: #000; color: #fff; border: none; padding: 0.5rem; cursor: pointer; transition: background 0.3s; }
+.add-to-cart:hover { background: #333; }
+.buy-now { background: #00BFFF; }
+.quick-view { background: #666; }
+#shipping, #about { padding: 2rem; background: #fff; margin: 1rem 0; }
+form { display: flex; flex-direction: column; gap: 0.5rem; max-width: 400px; }
+button { background: #00BFFF; color: #fff; border: none; padding: 0.5rem; cursor: pointer; }
+.modal { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); }
+.modal-content { background: #fff; margin: 15% auto; padding: 2rem; width: 80%; max-width: 600px; border-radius: 10px; }
+.close { float: right; font-size: 28px; cursor: pointer; }
+footer { background: #000; color: #fff; padding: 1rem; text-align: center; }
+.newsletter { display: flex; gap: 0.5rem; justify-content: center; margin-top: 1rem; }
+@media (max-width: 768px) { nav { flex-direction: column; } .product-grid { grid-template-columns: 1fr; } .modal-content { width: 90%; } }
